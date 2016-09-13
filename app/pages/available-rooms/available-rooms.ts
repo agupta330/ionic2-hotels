@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { BookingPage } from '../booking/booking';
 
-/*
-  Generated class for the AvailableRoomsPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/available-rooms/available-rooms.html',
 })
 export class AvailableRoomsPage {
 
-  constructor(private navCtrl: NavController) {
+    rooms: any;
 
-  }
+    constructor(private nav: NavController, private navParams: NavParams) {
+        this.rooms = this.navParams.get('rooms');
+    }
+
+    bookRoom(room){
+        this.nav.push(BookingPage, {
+            room: room,
+            details: this.navParams.get('details')
+        });
+    }
 
 }
